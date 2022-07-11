@@ -31,7 +31,7 @@ echo convertToNumeric($str,$input);
 
 function convertToString($str1)
     {
-       $nums = array("", "", "ABC", "DEF", "GHI", "JKL", "MNO", "PQRS", "TUV", "WXYZ");
+       $nums = array("", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz");
        $str = str_split($str1);
     $arrayLength = count($str);
       
