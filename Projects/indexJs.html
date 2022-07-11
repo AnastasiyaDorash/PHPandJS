@@ -1,0 +1,66 @@
+<!doctype html>
+<html ng-app="purchaseApp">
+
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+
+<body ng-controller="purchaseController">
+	<div class="page-header">
+		<h1> Tablica obiektów z danymi dotyczącymi osoby</h1>
+	</div>
+
+	<div class="panel">
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Nazwa użytkownika</th>
+					<th>Rok urodzenia</th>
+					<th>Pensja</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="userArr in usersArr">
+					<td>{{userArr.username}}</td>
+					<td>{{userArr.birthYear}}</td>
+					<td>{{userArr.salary}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script>
+		var usersArray = [
+	   {username: 'Jan Kowalski', birthYear: 1983, salary: 4200},
+       {username: 'Anna Nowak', birthYear: 1994, salary: 7500},
+       {username: 'Jakub Jakubowski', birthYear: 1985, salary: 18000},
+       {username: 'Piotr Kozak', birthYear: 2000, salary: 4999},
+       {username: 'Marek Sinica', birthYear: 1989, salary: 7200},
+       {username: 'Kamila Wiśniewska', birthYear: 1972, salary: 6800},
+		];
+		var currentYear = new Date().getFullYear();
+		welcomeUsers(usersArray);
+		var purchaseApp = angular.module("purchaseApp", []);
+		purchaseApp.controller("purchaseController", function($scope) {
+			$scope.usersArr = usersArray;
+		});
+
+		function welcomeUsers(array) {
+			array.forEach(function(e) {
+				if (e.salary > 15000) {
+					console.log('Witaj, prezesie!');
+				} else if (e.salary < 5000) {
+					console.log(e.username + ', szykuj się na podwyżkę!');
+				} else if (e.birthYear % 2 == 0) {
+					console.log('Witaj, ' + e.username + '! W tym roku kończysz ' + (currentYear - e.birthYear) + ' lat!');
+				} else {
+					console.log(e.username + ', jesteś zwolniony!');
+				}
+			});
+		}
+	</script>
+</body>
+
+</html>
